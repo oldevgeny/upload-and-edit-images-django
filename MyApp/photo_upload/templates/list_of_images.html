@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Upload your images</h2>
+    <p>
+      <a href="{% url 'class_upload_image' %}" class="btn btn-primary">Upload image</a>
+    </p>
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Image from file</th>
+        <th>Image sizes</th>
+        <th>Uploading time</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for image in images %}
+        <tr>
+          <td>
+            {% if image.image %}
+              <img src="{{ image.image.url }}" style="width:200px;">
+            {% elif image.image_url %}
+              <img src="{{ image.image_url }}" style="width:200px;">
+            {% else %}
+              No image chosen
+            {% endif %}
+          </td>
+          <td>
+            {% if image.image %}
+              {{ image.image.width }} x {{ image.image.height }}
+            {% else %}
+              No image chosen
+            {% endif %}
+          </td>
+          <td>
+            {{ image.time }}
+          </td>
+          <td>
+            {% if image.image %}
+              <a href="{{ image.image.url }}" class="btn btn-primary btn-sm" target="_blank">
+                Download original image
+              </a>
+            {% elif image.image_url %}
+              <a href="{{ image.image_url }}" class="btn btn-primary btn-sm" target="_blank">
+                Download original image
+              </a>
+            {% else %}
+              No image chosen
+            {% endif %}
+          </td>
+          <td>
+            <form method="post" action="{% url 'delete_image' image.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
