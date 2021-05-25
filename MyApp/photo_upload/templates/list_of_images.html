@@ -8,8 +8,7 @@
   <table class="table mb-0">
     <thead>
       <tr>
-        <th>Image from file</th>
-        <th>Image sizes</th>
+        <th>Original image</th>
         <th>Uploading time</th>
         <th>Download</th>
         <th>Delete</th>
@@ -20,18 +19,19 @@
         <tr>
           <td>
             {% if image.image %}
-              <img src="{{ image.image.url }}" style="width:200px;">
+              {% if image.width >= image.height %}
+                <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
+              {% else %}
+                <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
+              {% endif %}
             {% elif image.image_url %}
-              <img src="{{ image.image_url }}" style="width:200px;">
+              {% if image.width >= image.height %}
+                <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+              {% else %}
+                <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
+              {% endif %}
             {% else %}
-              No image chosen
-            {% endif %}
-          </td>
-          <td>
-            {% if image.image %}
-              {{ image.image.width }} x {{ image.image.height }}
-            {% else %}
-              No image chosen
+                No image chosen
             {% endif %}
           </td>
           <td>
