@@ -1,7 +1,3 @@
-import PIL.Image
-
-import os
-
 from django.db import models
 from django.conf import settings
 
@@ -10,10 +6,10 @@ class IntegerRangeField(models.IntegerField):
         self.min_value, self.max_value = min_value, max_value
         models.IntegerField.__init__(self, verbose_name, name, **kwargs)
 
-    def form_field(self, **kwargs):
+    def formfield(self, **kwargs):
         defaults = {'min_value': self.min_value, 'max_value':self.max_value}
         defaults.update(kwargs)
-        return super(IntegerRangeField, self).form_field(**defaults)
+        return super(IntegerRangeField, self).formfield(**defaults)
 
 class Image_Model(models.Model):
     time = models.DateTimeField(auto_now=True, verbose_name="Uploading date")
