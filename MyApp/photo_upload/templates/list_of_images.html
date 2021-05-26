@@ -1,63 +1,67 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Upload your images</h2>
-    <p>
-      <a href="{% url 'class_upload_image' %}" class="btn btn-primary">Upload image</a>
-    </p>
-  <table class="table mb-0">
+<h2>Upload your images</h2>
+<p>
+    <a href="{% url 'class_upload_image' %}" class="btn btn-primary">Upload image</a>
+</p>
+<table class="table mb-0">
     <thead>
-      <tr>
-        <th>Original image</th>
-        <th>Uploading time</th>
-        <th>Download</th>
+    <tr>
+        <th>Edited image</th>
+        <th>Updating time</th>
+        <th>Download original image</th>
+        <th>Edit</th>
         <th>Delete</th>
-      </tr>
+    </tr>
     </thead>
     <tbody>
-      {% for image in images %}
-        <tr>
-          <td>
+    {% for image in images %}
+    <tr>
+        <td>
             {% if image.image %}
-              {% if image.width >= image.height %}
-                <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
-              {% else %}
-                <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
-              {% endif %}
-            {% elif image.image_url %}
-              {% if image.width >= image.height %}
-                <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
-              {% else %}
-                <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
-              {% endif %}
+            {% if image.width >= image.height %}
+            <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
             {% else %}
-                No image chosen
+            <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
             {% endif %}
-          </td>
-          <td>
+            {% elif image.image_url %}
+            {% if image.width >= image.height %}
+            <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+            {% else %}
+            <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
+            {% endif %}
+            {% else %}
+            No image chosen
+            {% endif %}
+        </td>
+        <td>
             {{ image.time }}
-          </td>
-          <td>
+        </td>
+        <td>
             {% if image.image %}
-              <a href="{{ image.image.url }}" class="btn btn-primary btn-sm" target="_blank">
+            <a href="{{ image.image.url }}" class="btn btn-primary btn-sm" target="_blank">
                 Download original image
-              </a>
+            </a>
             {% elif image.image_url %}
-              <a href="{{ image.image_url }}" class="btn btn-primary btn-sm" target="_blank">
+            <a href="{{ image.image_url }}" class="btn btn-primary btn-sm" target="_blank">
                 Download original image
-              </a>
+            </a>
             {% else %}
-              No image chosen
+            No image chosen
             {% endif %}
-          </td>
-          <td>
+        </td>
+        <td>
+            <a href="{% url 'image_updating' image.pk %}" class="btn btn-secondary">Edit</a>
+        </td>
+        <td>
             <form method="post" action="{% url 'delete_image' image.pk %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
-          </td>
-        </tr>
-      {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
     </tbody>
-  </table>
+</table>
 {% endblock %}

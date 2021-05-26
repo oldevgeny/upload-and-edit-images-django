@@ -5,10 +5,10 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('images/<int:pk>/delete', views.delete_image, name='delete_image'),
 
+    path('images/update/<int:pk>', views.Update_Image_View.as_view(), name='image_updating'),
     path('images/', views.Image_List_View.as_view(), name='list_of_images'),
     path('images/upload/', views.Upload_Image_View.as_view(), name='class_upload_image'),
 ]

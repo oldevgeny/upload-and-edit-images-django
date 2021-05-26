@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block df %}
+<h2>Edit your image</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+<table class="table mb-0">
+    <thead>
+    <tr>
+        <th>Edited image</th>
+    </tr>
+    </thead>
+    <tbody>
+    <td>
+        {% if image.image %}
+        {% if image.width >= image.height %}
+        <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
+        {% else %}
+        <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
+        {% endif %}
+        {% elif image.image_url %}
+        {% if image.width >= image.height %}
+        <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+        {% else %}
+        <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
+        {% endif %}
+        {% else %}
+        No image chosen
+        {% endif %}
+    </td>
+    </tbody>
+</table>
+{% endblock %}
