@@ -1,5 +1,6 @@
 ## Project description:
 
+Site for uploading and editing images.
 
 ## HOW TO INSTALL:
 
@@ -50,7 +51,7 @@ python manage.py migrate
 #### Run the development server:
 
 ```python
-python manage.py runserver 2019
+python manage.py runserver
 ```
 
 ###### The project will be available at http://127.0.0.1:8000/images/
