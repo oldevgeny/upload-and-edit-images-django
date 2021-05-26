@@ -19,19 +19,19 @@
     <tbody>
     <td>
         {% if image.image %}
-        {% if image.width >= image.height %}
-        <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
-        {% else %}
-        <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
-        {% endif %}
+          {% if image.width >= image.height %}
+            <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
+          {% else %}
+            <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
+          {% endif %}
         {% elif image.image_url %}
-        {% if image.width >= image.height %}
-        <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+          {% if image.width >= image.height %}
+            <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+          {% else %}
+            <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
+          {% endif %}
         {% else %}
-        <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
-        {% endif %}
-        {% else %}
-        No image chosen
+          No image chosen
         {% endif %}
     </td>
     </tbody>

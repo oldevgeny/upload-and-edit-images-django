@@ -20,19 +20,19 @@
     <tr>
         <td>
             {% if image.image %}
-            {% if image.width >= image.height %}
-            <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
-            {% else %}
-            <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
-            {% endif %}
+              {% if image.width >= image.height %}
+                <img src="{{ image.image.url }}" style="width:{{ image.width }}px;">
+              {% else %}
+                <img src="{{ image.image.url }}" style="height:{{ image.height }}px;">
+              {% endif %}
             {% elif image.image_url %}
-            {% if image.width >= image.height %}
-            <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+              {% if image.width >= image.height %}
+                <img src="{{ image.image_url }}" style="width:{{ image.width }}px;">
+              {% else %}
+                <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
+              {% endif %}
             {% else %}
-            <img src="{{ image.image_url }}" style="height:{{ image.height }}px;">
-            {% endif %}
-            {% else %}
-            No image chosen
+              No image chosen
             {% endif %}
         </td>
         <td>
@@ -40,15 +40,15 @@
         </td>
         <td>
             {% if image.image %}
-            <a href="{{ image.image.url }}" class="btn btn-primary btn-sm" target="_blank">
-                Download original image
-            </a>
+              <a href="{{ image.image.url }}" class="btn btn-primary btn-sm" target="_blank">
+                  Download original image
+              </a>
             {% elif image.image_url %}
-            <a href="{{ image.image_url }}" class="btn btn-primary btn-sm" target="_blank">
-                Download original image
-            </a>
+              <a href="{{ image.image_url }}" class="btn btn-primary btn-sm" target="_blank">
+                  Download original image
+              </a>
             {% else %}
-            No image chosen
+              No image chosen
             {% endif %}
         </td>
         <td>
