@@ -2,6 +2,10 @@
 
 Site for uploading and editing images.
 
+###### For details you can read the [Task](https://www.notion.so/backend-14c451038c5541c9996095192db75fc6).
+
+
+
 ## HOW TO INSTALL:
 
 ### Python version -- 3.8.5
@@ -9,7 +13,7 @@ Site for uploading and editing images.
 
 #### 1) Activate your virtual environment:
 
-##### For Mac:
+##### For UNIX based systems:
 ```python
 python3 -m venv venv
 source venv/bin/activate
@@ -26,7 +30,7 @@ venv\Scripts\activate
 #### 2) Clone the repository to your local machine:
 
 ```python
-git clone https://github.com/oldevgeny/idaproject_backend_developer.git
+git clone https://github.com/oldevgeny/upload-and-edit-images-django.git
 ```
 
 
